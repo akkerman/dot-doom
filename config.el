@@ -56,11 +56,12 @@
 ;; Org-Roam
 (setq org-roam-directory "~/org/slip-box")
 
-(setq
-      bibtex-completion-pdf-field "file"
-      bibtex-completion-bibliography '("~/org/bib/library.bib")
-      bibtex-completion-library-path '("~/Dropbox/Library/")
-      )
+;; (setq
+;;       bibtex-completion-pdf-field "file"
+;;       bibtex-completion-bibliography '("~/org/bib/library.bib")
+;;       bibtex-completion-library-path '("~/Dropbox/Library/")
+;;       bibtex-completion-notes-path '("~/org/slip-box/refs")
+;;       )
 
 (setq org-roam-mode-section-functions
       (list #'org-roam-backlinks-section
@@ -75,3 +76,18 @@
 (setq projectile-project-search-path '("~/git/" "~/git/dsplatform/"))
 
 (setq ob-mermaid-cli-path "/home/akkerman/org/node_modules/.bin/mmdc")
+
+
+
+;; https://github.com/hlissner/doom-emacs/tree/develop/modules/tools/biblio
+;; https://github.com/bdarcus/citar
+
+
+;; (setq! bibtex-completion-bibliography '("/home/akkerman/org/bib/library.bib"))
+;; (setq! bibtex-completion-library-path '("/home/akkerman/Dropbox/Library" "/home/akkerman/Dropbox/Library Bought")
+;;        bibtex-completion-notes-path "/home/akkerman/org/slip-box/refs")
+;; 
+
+(setq! citar-bibliography '("/home/akkerman/org/bib/library.bib"))
+(setq! citar-library-paths '("/home/akkerman/Dropbox/Library" "/home/akkerman/Dropbox/Library Bought")
+       citar-notes-paths '("/home/akkerman/org/slip-box/refs"))

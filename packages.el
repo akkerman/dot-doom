@@ -56,10 +56,10 @@
 
 (package! gruvbox-theme)
 (package! eslint-fix)
-(package! org-ref)
+;; (package! org-ref)
 
-(package! org-roam-bibtex
-  :recipe (:host github :repo "org-roam/org-roam-bibtex"))
+;; (package! org-roam-bibtex
+;;   :recipe (:host github :repo "org-roam/org-roam-bibtex"))
 
 (package! org-roam-ui)
 
