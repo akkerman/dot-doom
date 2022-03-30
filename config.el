@@ -80,7 +80,7 @@
 :ROAM_REFS: @${citekey}
 :END:
 #+title: ${title}
-#+todo: READING SKIP DEVELOP DONE
+#+todo: READING(r) DEVELOP(D) | SKIP(s) DONE(d)
 #+setupfile: theme-readtheorg.setup
 #+filetags: :lit:
 #+startup: overview\n")
