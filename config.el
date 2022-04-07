@@ -161,3 +161,6 @@ exist after each headings's drawers."
                    t (if prefix
                          nil
                        'tree)))
+
+
+(setq org-hide-emphasis-markers t)
