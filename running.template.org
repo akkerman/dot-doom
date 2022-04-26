@@ -1,0 +1,9 @@
+* %U %^{Korte omschrijving locatie / route}
+Distance : %^{Distance}km
+Time     : %^{Time}
+Pace     : %^{Pace}
+Avg HR   : %^{Avg HR}bpm
+Max HR   : %^{Max HR}bpm
+** Notities
+Dieet? Blessures? Voortgang?
+%?

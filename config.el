@@ -164,3 +164,11 @@ exist after each headings's drawers."
 
 
 (setq org-hide-emphasis-markers t)
+
+
+(after! org
+  (add-to-list 'org-capture-templates
+               '("r" "Run Journal" entry
+                 (file+datetree "slip-box/daily/running.org")
+                 (file "~/.doom.d/running.template.org")))
+  ) ; after! org
