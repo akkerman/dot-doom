@@ -1,9 +1,12 @@
-* %U %^{Korte omschrijving locatie / route}
-Distance : %^{Distance}km
-Time     : %^{Time}
-Pace     : %^{Pace}
-Avg HR   : %^{Avg HR}bpm
-Max HR   : %^{Max HR}bpm
-** Notities
+* %^{Korte omschrijving locatie / route}
+:PROPERTIES:
+:Week: %<%U>
+:Time_of_Day: %^{hoe laat gelopen?|%<%H:%M>}
+:Distance: %^{Distance}km
+:Time: %^{Time}
+:Pace: %^{Pace}
+:Avg_HR: %^{Avg HR}bpm
+:Max_HR: %^{Max HR}bpm
+:END:
 Dieet? Blessures? Voortgang?
 %?
