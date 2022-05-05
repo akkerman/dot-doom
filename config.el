@@ -164,6 +164,9 @@ exist after each headings's drawers."
 
 
 (setq org-hide-emphasis-markers t)
+(setq org-agenda-start-with-log-mode t)
+(setq org-log-done 'time)
+(setq org-log-into-drawer t)
 
 
 (after! org
@@ -172,3 +175,11 @@ exist after each headings's drawers."
                  (file+datetree "slip-box/daily/running.org")
                  (file "~/.doom.d/running.template.org")))
   ) ; after! org
+
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         "* %<%H:%M> %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))
+       ))
