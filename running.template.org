@@ -2,11 +2,11 @@
 :PROPERTIES:
 :Week: %<%U>
 :Time_of_Day: %^{hoe laat gelopen?|%<%H:%M>}
-:Distance: %^{Distance}km
+:Distance: %^{Distance}
 :Time: %^{Time}
 :Pace: %^{Pace}
-:Avg_HR: %^{Avg HR}bpm
-:Max_HR: %^{Max HR}bpm
+:Avg_HR: %^{Avg HR}
+:Max_HR: %^{Max HR}
 :END:
 Dieet? Blessures? Voortgang?
 %?
