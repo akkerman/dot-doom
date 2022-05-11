@@ -198,3 +198,5 @@ exist after each headings's drawers."
 (setq eslint-fix-executable "eslint_d")
 (eval-after-load 'js2-mode
   '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+
+(setq org-tags-column 75)
