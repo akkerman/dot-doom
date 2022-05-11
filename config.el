@@ -193,3 +193,8 @@ exist after each headings's drawers."
 ;                :prefix "n"
 ;                :desc "Org Transclusion Mode" "t" #'org-transclusion-mode)
                )
+
+;; automatically fix javascript errors
+(setq eslint-fix-executable "eslint_d")
+(eval-after-load 'js2-mode
+  '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
