@@ -183,3 +183,13 @@ exist after each headings's drawers."
          :target (file+head "%<%Y-%m-%d>.org"
                             "#+title: %<%Y-%m-%d>\n"))
        ))
+
+(use-package! org-transclusion
+              :after org
+              :init
+;               (map!
+;                :map global-map "<f12>" #'org-transclusion-add
+;                :leader
+;                :prefix "n"
+;                :desc "Org Transclusion Mode" "t" #'org-transclusion-mode)
+               )
