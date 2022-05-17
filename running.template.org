@@ -6,7 +6,8 @@
 :Time: %^{Time}
 :Pace: %^{Pace}
 :Avg_HR: %^{Avg HR}
-:Max_HR: %^{Max HR}
+:time_low_HR: %^{minutes at *low* heart rate}
+:time_high_HR: %^{minutes at *high* heart rate}
 :END:
 Dieet? Blessures? Voortgang?
 %?
