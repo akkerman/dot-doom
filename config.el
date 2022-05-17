@@ -200,3 +200,8 @@ exist after each headings's drawers."
 (eval-after-load 'js2-mode
   '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
+(use-package! 'org-gcal)
+(setq org-gcal-client-id "902740636832-kpb8amtvh453m2oo2p2t9lr7ml3pic0c.apps.googleusercontent.com"
+      org-gcal-client-secret "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"
+      org-gcal-fetch-file-alist '(("marcel.akkerman@gmail.com" .  "~/org/gcal.org")
+                                  ))
