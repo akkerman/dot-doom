@@ -163,13 +163,14 @@ exist after each headings's drawers."
                        'tree)))
 
 
-(setq org-hide-emphasis-markers t)
-(setq org-agenda-start-with-log-mode t)
-(setq org-log-done 'time)
-(setq org-log-into-drawer t)
 
 
 (after! org
+  (setq org-hide-emphasis-markers t)
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-tags-column 75)
   (add-to-list 'org-capture-templates
                '("r" "Run Journal" entry
                  (file+datetree "slip-box/daily/running.org")
@@ -199,4 +200,3 @@ exist after each headings's drawers."
 (eval-after-load 'js2-mode
   '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
-(setq org-tags-column 75)
