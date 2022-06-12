@@ -80,7 +80,7 @@
 :ROAM_REFS: @${citekey}
 :END:
 #+title: ${title}
-#+todo: READING(r) DEVELOP(D) | DONE(d) SKIP(s)
+#+todo: READING(r) DEVELOP(d) | DONE(D) SKIP(s)
 #+setupfile: theme-readtheorg.setup
 #+filetags: :lit:
 #+startup: overview\n")
@@ -172,9 +172,14 @@ exist after each headings's drawers."
   (setq org-log-into-drawer t)
   (setq org-tags-column 75)
   (add-to-list 'org-capture-templates
+               '("s" "Survival run Journal" entry
+                 (file+datetree "slip-box/daily/survival.org")
+                 (file "~/.doom.d/survival.template.org")))
+  (add-to-list 'org-capture-templates
                '("r" "Run Journal" entry
                  (file+datetree "slip-box/daily/running.org")
-                 (file "~/.doom.d/running.template.org")))
+                (file "~/.doom.d/running.template.org")))
+
   ) ; after! org
 
 

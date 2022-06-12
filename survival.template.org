@@ -1,0 +1,10 @@
+* %^{Korte omschrijving locatie / route}
+:PROPERTIES:
+:Week: %<%U>
+:Time_of_Day: %^{hoe laat gelopen?|8:30}
+:Distance: %^{Distance}
+:Time: %^{Time}
+:Avg_HR: %^{Avg HR}
+:END:
+Dieet? Blessures? Voortgang?
+%?
