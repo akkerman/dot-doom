@@ -173,11 +173,11 @@ exist after each headings's drawers."
   (setq org-tags-column 75)
   (add-to-list 'org-capture-templates
                '("s" "Survival run Journal" entry
-                 (file+datetree "slip-box/daily/survival.org")
+                 (file+datetree "slip-box/survival.org")
                  (file "~/.doom.d/survival.template.org")))
   (add-to-list 'org-capture-templates
                '("r" "Run Journal" entry
-                 (file+datetree "slip-box/daily/running.org")
+                 (file+datetree "slip-box/running.org")
                 (file "~/.doom.d/running.template.org")))
 
   ) ; after! org
