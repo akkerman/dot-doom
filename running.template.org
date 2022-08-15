@@ -1,13 +1,13 @@
-* %^{Korte omschrijving locatie / route}
+* %^{Korte omschrijving locatie / route / training}
 :PROPERTIES:
 :Week: %<%U>
-:Time_of_Day: %^{hoe laat gelopen?|%<%H:%M>}
+:Time_of_Day: %^{start of run|%<%H:%M>}
 :Distance: %^{Distance}
 :Time: %^{Time}
 :Pace: %^{Pace}
 :Avg_HR: %^{Avg HR}
-:time_low_HR: %^{minutes at *low* heart rate}
-:time_high_HR: %^{minutes at *high* heart rate}
+:time_low_HR: %^{minutes at low heart rate}
+:time_high_HR: %^{minutes at high heart rate}
 :END:
 Dieet? Blessures? Voortgang?
 %?
