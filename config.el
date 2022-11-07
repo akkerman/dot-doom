@@ -214,3 +214,7 @@ exist after each headings's drawers."
       org-gcal-client-secret "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"
       org-gcal-fetch-file-alist '(("marcel.akkerman@gmail.com" .  "~/org/gcal.org")
                                   ))
+
+(setq org-agenda-start-on-weekday 1)
+
+(setq org-latex-toc-command "\\tableofcontents \\clearpage")
