@@ -80,7 +80,7 @@
 :ROAM_REFS: @${citekey}
 :END:
 #+title: ${title}
-#+todo: READING(r) DEVELOP(d) | DONE(D) SKIP(s)
+#+todo: READING(r) DEVELOP(D) | DONE(d) SKIP(s)
 #+setupfile: theme-readtheorg.setup
 #+filetags: :lit:
 #+startup: overview\n")
@@ -218,3 +218,13 @@ exist after each headings's drawers."
 (setq org-agenda-start-on-weekday 1)
 
 (setq org-latex-toc-command "\\tableofcontents \\clearpage")
+
+  (defun my/org-roam-swap-work-and-home ()
+    "Swap between home and work org roam databases."
+    (interactive)
+    (if (equal org-roam-directory "~/org")
+        (setq org-roam-directory "~/Documents/mijn-aansluiting"
+              org-roam-db-location "~/Document/mijn-aansluiting/org-roam.db")
+      (setq org-roam-directory "~/org"
+            org-roam-db-location "~/.config/emacs/.local/cache/org-roam.db"))
+    (org-roam-db-sync))

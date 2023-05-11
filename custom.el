@@ -4,9 +4,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("/home/akkerman/org/gcal.org" "/home/akkerman/org/agenda.org" "/home/akkerman/org/feestdagen.org" "/home/akkerman/org/notes.org" "/home/akkerman/org/projects.org" "/home/akkerman/org/todo.org"))
+   '("/home/akkerman/org/slip-box/20220929053741-current_projects.org" "/home/akkerman/org/gcal.org" "/home/akkerman/org/agenda.org" "/home/akkerman/org/feestdagen.org" "/home/akkerman/org/notes.org" "/home/akkerman/org/projects.org" "/home/akkerman/org/todo.org"))
  '(safe-local-variable-values
-   '((projectile-project-name . "Rules Manager API")
+   '((org-roam-db-location . "./org-roam.db")
+     (org-roam-directory . "./")
+     (org-roam-db-location . "./mijn-aansluiting/org-roam.db")
+     (org-roam-directory . "./mijn-aansluiting")
+     (projectile-project-name . "Rules Manager API")
      (projectile-project-name . "CAPO API")
      (projectile-project-name . "Beheer API")
      (org-roam-db-location . "~/Documents/mijn-aansluiting/org-roam.db")
