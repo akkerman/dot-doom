@@ -55,6 +55,7 @@
 
 ;; Org-Roam
 (setq org-roam-directory "~/org/slip-box")
+;; (setq org-roam-directory "~/Documents/mijn-aansluiting")
 
 ;; (setq
 ;;       bibtex-completion-pdf-field "file"
@@ -66,7 +67,7 @@
 (setq org-roam-mode-section-functions
       (list #'org-roam-backlinks-section
             #'org-roam-reflinks-section
-            ;; #'org-roam-unlinked-references-section
+            #'org-roam-unlinked-references-section
             ))
 
 (defun viewsource/org-roam-node-from-cite (keys-entries)
@@ -125,7 +126,8 @@ same directory as the org-buffer and insert a link to this file."
 
 (setq! citar-bibliography '("/home/akkerman/org/bib/library.bib"))
 (setq! citar-library-paths '("/home/akkerman/Dropbox/Library" "/home/akkerman/Dropbox/Library Bought")
-       citar-notes-paths '("/home/akkerman/org/slip-box/refs"))
+       citar-notes-paths '("/home/akkerman/org/slip-box/refs")
+       citar-org-roam-subdir "refs")
 
 
 ;; fixing blank lines in org files

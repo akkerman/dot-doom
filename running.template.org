@@ -5,6 +5,7 @@
 :Distance: %^{Distance}
 :Time: %^{Time}
 :Pace: %^{Pace}
+:HR2_Pace: %^{HR2 Pace, easy/foundation/endurance}
 :Avg_HR: %^{Avg HR}
 :time_low_HR: %^{minutes at low heart rate}
 :time_high_HR: %^{minutes at high heart rate}
