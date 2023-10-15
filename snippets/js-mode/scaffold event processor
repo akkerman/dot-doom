@@ -1,0 +1,41 @@
+# -*- mode: snippet -*-
+# name: scaffold event processor
+# key: eventproc
+# --
+/**
+ * @typedef {import('../../../event/entities').EventTypes} EventTypes
+ * @typedef {ReturnType<import('../save-project')>} SaveProject
+ *
+ * @typedef {import('./event-manager').RegisterEventProcessor} RegisterEventProcessor
+ * @typedef {import('./index').ValidatingEventProcessor} ValidatingEventProcessor
+ */
+
+
+/**
+ * @param {{
+ *   registerEventProcessor: RegisterEventProcessor
+ *   EVENT_TYPES: EventTypes
+ *   saveProject: SaveProject
+ * }} deps
+ * @returns {ValidatingEventProcessor}
+ */
+module.exports = function make${1:EventProcessor} ({
+  registerEventProcessor,
+  EVENT_TYPES,
+
+  saveProject,
+}) {
+  /** @type {ValidatingEventProcessor} */
+  const eventProcessor = {
+    validate: async ({ event, project, user }) => {
+      // TODO implement
+      return event
+    },
+    process: async ({ event, project, user }) => {
+      // TODO implement
+      await saveProject(project)
+    },
+  }
+
+  return registerEventProcessor(EVENT_TYPES.${2:EVENT_TYPE}, eventProcessor)
+}

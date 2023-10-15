@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: eslint-disable-line require-await
+# key: edlw
+# --
+ // eslint-disable-line require-await
+

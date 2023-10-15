@@ -110,6 +110,7 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; Projectile
 (setq projectile-project-search-path '("~/git/" "~/git/dsplatform/"))
+;; (setq projectile-create-missing-test-files t)
 
 (setq ob-mermaid-cli-path "/home/akkerman/org/node_modules/.bin/mmdc")
 
@@ -230,3 +231,16 @@ exist after each headings's drawers."
       (setq org-roam-directory "~/org"
             org-roam-db-location "~/.config/emacs/.local/cache/org-roam.db"))
     (org-roam-db-sync))
+
+
+;; https://emacs.stackexchange.com/questions/12613/convert-the-first-character-to-uppercase-capital-letter-using-yasnippet
+(defun my/capitalize-first-char (&optional string)
+  "Capitalize only the first character of the input STRING."
+  (when (and string (> (length string) 0))
+    (let ((first-char (substring string nil 1))
+          (rest-str   (substring string 1)))
+      (concat (capitalize first-char) rest-str))))
+
+
+(fset 'BLI\ header
+   (kmacro-lambda-form [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))

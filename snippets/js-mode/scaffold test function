@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name: scaffold test function
+# key: makerequire
+# --
+const make${2:$(my/capitalize-first-char yas-text)} = require('./${1:module}')
+
+describe('test $1', () => {
+  /** @type {jest.Mocked<Parameters<make${2:$(my/capitalize-first-char yas-text)}>[]>} */
+  let deps
+
+  /** @type {ReturnType<make${2:$(my/capitalize-first-char yas-text)}>} */
+  let ${2:functionUnderTest}
+
+  beforeAll(() => {
+    deps = {
+      ${3:dependantFunction}: jest.fn().mockResolvedValue(null),
+      $0
+    }
+    $2 = make${2:$(my/capitalize-first-char yas-text)}(deps)
+  })
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('does not throw', async () => {
+    const result = await $2()
+
+    expect(result).toBeDefined()
+  })
+})

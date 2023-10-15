@@ -70,4 +70,4 @@
 (package! ob-mermaid)
 (package! mermaid-mode)
 (package! org-transclusion)
-(package! org-gcal)
+;; (package! org-gcal)
