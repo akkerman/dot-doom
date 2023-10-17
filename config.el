@@ -212,11 +212,11 @@ exist after each headings's drawers."
       :desc "Toggle implementation and test"
       "p v" #'projectile-toggle-between-implementation-and-test)
 
-(use-package! 'org-gcal)
-(setq org-gcal-client-id "902740636832-kpb8amtvh453m2oo2p2t9lr7ml3pic0c.apps.googleusercontent.com"
-      org-gcal-client-secret "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"
-      org-gcal-fetch-file-alist '(("marcel.akkerman@gmail.com" .  "~/org/gcal.org")
-                                  ))
+;; (use-package! 'org-gcal)
+;; (setq org-gcal-client-id "902740636832-kpb8amtvh453m2oo2p2t9lr7ml3pic0c.apps.googleusercontent.com"
+;;       org-gcal-client-secret "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"
+;;       org-gcal-fetch-file-alist '(("marcel.akkerman@gmail.com" .  "~/org/gcal.org")
+;;                                   ))
 
 (setq org-agenda-start-on-weekday 1)
 
