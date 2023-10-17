@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: it.todo
+# key: itt
+# --
+it.todo('${1:should}')

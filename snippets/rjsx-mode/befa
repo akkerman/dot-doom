@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: beforeAll
+# key: befa
+# --
+beforeAll(() => {
+  $0
+})
