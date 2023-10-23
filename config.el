@@ -109,7 +109,7 @@ same directory as the org-buffer and insert a link to this file."
 (setq doom-modeline-vcs-max-length 100)
 
 ;; Projectile
-(setq projectile-project-search-path '("~/git/" "~/git/dsplatform/"))
+(setq projectile-project-search-path '("~/git" "~/git/viewsource" "~/git/dsplatform" "~/git/creetion" "~/.config"))
 ;; (setq projectile-create-missing-test-files t)
 
 (setq ob-mermaid-cli-path "/home/akkerman/org/node_modules/.bin/mmdc")
@@ -264,3 +264,6 @@ exist after each headings's drawers."
 (fset 'BLI\ header
    (kmacro-lambda-form [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))
 
+
+;; change default mode for javascript files (was rsjx)
+(add-to-list 'auto-mode-alist '("\\.[mc]?js\\'" . typescript-mode))
