@@ -209,8 +209,27 @@ exist after each headings's drawers."
   '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
 (map! :leader
-      :desc "Toggle implementation and test"
-      "p v" #'projectile-toggle-between-implementation-and-test)
+      :desc "Toggle impl and test"
+      "p v"
+        #'projectile-toggle-between-implementation-and-test)
+
+
+(map! :leader
+      :desc "Split, toggle impl and test"
+      "w a"
+      (cmd!
+       (evil-window-vsplit)
+       (projectile-toggle-between-implementation-and-test)))
+
+(map! :leader
+      :desc "Split, toggle impl and test"
+      "w i"
+      (cmd!
+       (evil-window-split)
+       (evil-edit "index.js")))
+
+(map! :desc "Next error" :n "] g" #'flycheck-next-error)
+(map! :desc "Prev error" :n "[ g" #'flycheck-previous-error)
 
 ;; (use-package! 'org-gcal)
 ;; (setq org-gcal-client-id "902740636832-kpb8amtvh453m2oo2p2t9lr7ml3pic0c.apps.googleusercontent.com"
@@ -244,3 +263,4 @@ exist after each headings's drawers."
 
 (fset 'BLI\ header
    (kmacro-lambda-form [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))
+
