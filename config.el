@@ -133,10 +133,9 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; fixing blank lines in org files
 (defun unpackaged/org-fix-blank-lines (&optional prefix)
-  "Ensure that blank lines exist between headings and between headings and their contents.
-With prefix, operate on whole buffer. Ensures that blank lines
-exist after each headings's drawers."
-  (interactive "P")
+  "Ensure that blank lines exist between headings and between headings and their
+  contents. With prefix, operate on whole buffer. Ensures that blank lines exist
+  after each headings's drawers."  (interactive "P")
   (org-map-entries (lambda ()
                      (org-with-wide-buffer
                       ;; `org-map-entries' narrows the buffer, which prevents us from seeing
