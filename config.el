@@ -266,3 +266,13 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; change default mode for javascript files (was rsjx)
 (add-to-list 'auto-mode-alist '("\\.[mc]?js\\'" . typescript-mode))
+
+
+;; (add-to-list 'hl-todo-keyword-faces
+;;              '(("it.todo" warning bold)
+;;                ("it.skip" warning bold))
+
+(after! magit-todos
+  (setq magit-todos-keywords-list '("TODO" "FIXME" "DEPRECATED" "BUG" "it.todo" "it.skip")))
+
+(add-hook 'typescript-mode-hook 'eslint-fix-auto-mode)
