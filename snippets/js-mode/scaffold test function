@@ -5,7 +5,6 @@
 const make${2:$(my/capitalize-first-char yas-text)} = require('./${1:module}')
 
 describe('test $1', () => {
-  /** @type {jest.Mocked<Parameters<make${2:$(my/capitalize-first-char yas-text)}>[]>} */
   let deps
 
   /** @type {ReturnType<make${2:$(my/capitalize-first-char yas-text)}>} */
