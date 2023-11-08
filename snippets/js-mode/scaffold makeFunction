@@ -2,13 +2,14 @@
 # name: scaffold makeFunction
 # key: makefunc
 # --
+module.exports = make${1:$(my/capitalize-first-char yas-text)}
 /**
  * Provide dependencies
  * @param {{
  *   $2: function
  * }} dependencies
  */
-module.exports = function make${1:$(my/capitalize-first-char yas-text)}({ ${2:dependantFunction} }) {
+function make${1:$(my/capitalize-first-char yas-text)}({ ${2:dependantFunction} }) {
   return ${1:theFunction}
 
   /**
