@@ -261,7 +261,7 @@ same directory as the org-buffer and insert a link to this file."
 
 
 (fset 'BLI\ header
-   (kmacro-lambda-form [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))
+   (kmacro [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))
 
 
 ;; change default mode for javascript files (was rsjx)
@@ -276,3 +276,4 @@ same directory as the org-buffer and insert a link to this file."
   (setq magit-todos-keywords-list '("TODO" "FIXME" "DEPRECATED" "BUG" "it.todo" "it.skip")))
 
 (add-hook 'typescript-mode-hook 'eslint-fix-auto-mode)
+(add-hook 'typescript-mode-hook 'lsp)
