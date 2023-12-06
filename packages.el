@@ -71,3 +71,4 @@
 (package! mermaid-mode)
 (package! org-transclusion)
 ;; (package! org-gcal)
+(unpin! lsp-mode)
