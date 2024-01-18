@@ -1,0 +1,25 @@
+#+options: toc:nil num:nil
+#+filetags: :refinement:
+
+- tags :: [[id:f3bcb8b7-fa19-401d-b7fe-5e779cbc4383][refinement]]
+
+#+BEGIN: clocktable :scope file :maxlevel 3 :narrow 700
+#+CAPTION: Clock summary at [2024-01-01]
+| Headline   | Time |
+|------------+------|
+| *Total time* | *0:00* |
+#+END:
+
+
+* [[id:d66988c8-f7c9-47f6-a5ce-cbad7edf4913][CAPO]]
+
+* [[id:d86407cf-7d9b-43c0-b5c6-3cc964f577b8][DSP]]
+
+
+** TODO Pokeren
+
+* Overige
+** Later begonnen
+** Koffie
+** Standup
+** Eerder opgehouden

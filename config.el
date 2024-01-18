@@ -63,6 +63,15 @@
 ;;       bibtex-completion-library-path '("~/Dropbox/Library/")
 ;;       bibtex-completion-notes-path '("~/org/slip-box/refs")
 ;;       )
+;;
+(setq org-roam-capture-templates
+      '(
+
+        ("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)
+        ("m" "mijn-aansluiting" plain "%?" :target (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)
+        ("r" "refinement" plain (file "~/.doom.d/refinement.template.org") :target (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)
+
+        ))
 
 (setq org-roam-mode-section-functions
       (list #'org-roam-backlinks-section
