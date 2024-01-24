@@ -36,6 +36,14 @@
               #'org-roam-unlinked-references-section)))
 
 
+
+;; citations
+(after! citar
+        (setq citar-bibliography '("/home/akkerman/org/bib/library.bib"))
+        (setq citar-library-paths '("/home/akkerman/Dropbox/Library" "/home/akkerman/Dropbox/Library Bought")
+                citar-notes-paths '("/home/akkerman/org/slip-box/refs")
+                citar-org-roam-subdir "refs"))
+
 (defun viewsource/org-roam-node-from-cite (keys-entries)
     (interactive (list (citar-select-ref :multiple nil :rebuild-cache t)))
     (let ((title (citar--format-entry-no-widths (cdr keys-entries)
@@ -43,10 +51,7 @@
       (org-roam-capture- :templates
                          '(("r" "reference" plain (file "~/.config/doom/reference.template.org") :if-new
                             (file+head "refs/${citekey}.org"
-                                       ":PROPERTIES:
-:ROAM_REFS: @${citekey}
-:END:
-#+title: ${title}\n")
+                                       ":PROPERTIES:\n:ROAM_REFS: @${citekey}\n:END:\n#+title: ${title}\n")
                          :immediate-finish t
                          :unnarrowed t))
                          :info (list :citekey (car keys-entries))
