@@ -1,0 +1,8 @@
+#+options: num:nil
+#+todo: READING(r) DEVELOP(D) | DONE(d) SKIP(s)
+#+setupfile: theme-readtheorg.setup
+#+filetags: :lit:
+#+startup: overview
+
+* Notes
+%?
