@@ -41,8 +41,33 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
+
 (setq org-directory "~/org/")
+(after! org
+  (setq org-hide-emphasis-markers t)
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-tags-column 75)
+  (add-to-list 'org-capture-templates
+               '("s" "Survival run Journal" entry
+                 (file+datetree "slip-box/survival.org")
+                 (file "~/.doom.d/survival.template.org")))
+  (add-to-list 'org-capture-templates
+               '("r" "Run Journal" entry
+                 (file+datetree "slip-box/running.org")
+                (file "~/.doom.d/running.template.org"))))
+
 (setq org-roam-directory "~/org/slip-box")
+(after! org-roam
+    (setq org-roam-capture-templates '(
+        ("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)
+        ("m" "mijn-aansluiting" plain "%?" :target (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)
+        ("r" "refinement" plain (file "~/.doom.d/refinement.template.org") :target (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
+    (setq org-roam-mode-section-functions
+        (list #'org-roam-backlinks-section
+              #'org-roam-reflinks-section
+              #'org-roam-unlinked-references-section)))
 
 
 
@@ -68,12 +93,32 @@
 ;;   this file. Emacs searches the `load-path' when you load packages with
 ;;   `require' or `use-package'.
 ;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+;; To get information about any of these functions/macros, move the cursor over the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
 ;; This will open documentation for it, including demos of how they are used.
 ;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
 ;; etc).
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+
+;; Custom function
+(defun viewsource/org-scrot ()
+  "Take a screenshot into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq suffix (concat
+                  "_scrot-"
+                  (format-time-string "%Y%m%d%H%M%S") ".png"))
+  (setq absFilename (concat (buffer-file-name) suffix))
+  (setq relFilename (file-name-nondirectory absFilename))
+  (call-process "flameshot" nil nil nil "gui" "-p" absFilename)
+  (insert (concat "#+CAPTION: image-caption\n" "#+NAME:    fig:image-name\n" "[[./" relFilename "]]"))
+  (org-display-inline-images))
+
+;; Mode line
+(setq doom-modeline-vcs-max-length 100)
+
+;; Projectile
+(setq projectile-project-search-path '("~/git" "~/git/viewsource" "~/git/dsplatform" "~/git/creetion" "~/.config"))
+(setq ob-mermaid-cli-path "/home/akkerman/org/node_modules/.bin/mmdc")
