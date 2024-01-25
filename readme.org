@@ -1,0 +1,7 @@
+#+title: Doom Emacs configuration
+
+Configuration files for [[https://github.com/doomemacs/doomemacs][doom-emacs]].
+
+* Install
+
+Clone into ~~/.config/doom~
