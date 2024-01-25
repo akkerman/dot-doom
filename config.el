@@ -18,11 +18,11 @@
   (add-to-list 'org-capture-templates
                '("s" "Survival run Journal" entry
                  (file+datetree "slip-box/survival.org")
-                 (file "~/.config/doom/survival.template.org")))
+                 (file "~/.config/doom/templates/survival.org")))
   (add-to-list 'org-capture-templates
                '("r" "Run Journal" entry
                  (file+datetree "slip-box/running.org")
-                (file "~/.config/doom/running.template.org"))))
+                (file "~/.config/doom/templates/running.org"))))
 
 (setq org-roam-directory "~/org/slip-box")
 (after! org-roam
@@ -31,7 +31,7 @@
             (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
             :unnarrowed t)
         ("a" "Advent of Code" plain
-            (file "~/.config/doom/aoc.template.org") :target
+            (file "~/.config/doom/templates/aoc.org") :target
             (file+head "aoc/%^{year}/%^{day}.org" "#+title: ${title}\n")
             :unnarrowed t)
         ("m" "mijn-aansluiting")
@@ -39,7 +39,7 @@
             (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
             :unnarrowed t)
         ("mr" "refinement" plain
-            (file "~/.config/doom/refinement.template.org") :target
+            (file "~/.config/doom/templates/refinement.org") :target
             (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
             :unnarrowed t)))
     (setq org-roam-dailies-capture-templates '(
@@ -64,7 +64,7 @@
     (let ((title (citar--format-entry-no-widths (cdr keys-entries)
                                                 "${author editor}. (${date year}). ${title}")))
       (org-roam-capture- :templates
-                         '(("r" "reference" plain (file "~/.config/doom/reference.template.org") :if-new
+                         '(("r" "reference" plain (file "~/.config/doom/templates/reference.org") :if-new
                             (file+head "refs/${citekey}.org"
                                        ":PROPERTIES:\n:ROAM_REFS: @${citekey}\n:END:\n#+title: ${title}\n")
                          :immediate-finish t
