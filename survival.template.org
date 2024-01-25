@@ -4,5 +4,5 @@
 :Distance: %^{Distance}
 :Time: %^{Time}
 :END:
-Dieet? Blessures? Voortgang?
-%?
+
+%? Dieet? Blessures? Voortgang?
