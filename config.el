@@ -27,9 +27,24 @@
 (setq org-roam-directory "~/org/slip-box")
 (after! org-roam
     (setq org-roam-capture-templates '(
-        ("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)
-        ("m" "mijn-aansluiting" plain "%?" :target (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)
-        ("r" "refinement" plain (file "~/.config/doom/refinement.template.org") :target (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
+        ("d" "default" plain "%?" :target
+            (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+            :unnarrowed t)
+        ("a" "Advent of Code" plain
+            (file "~/.config/doom/aoc.template.org") :target
+            (file+head "aoc/%^{year}/%^{day}.org" "#+title: ${title}\n")
+            :unnarrowed t)
+        ("m" "mijn-aansluiting")
+        ("md" "default" plain "%?" :target
+            (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+            :unnarrowed t)
+        ("mr" "refinement" plain
+            (file "~/.config/doom/refinement.template.org") :target
+            (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+            :unnarrowed t)))
+    (setq org-roam-dailies-capture-templates '(
+        ("d" "default" entry "* %<%H:%M> %?" :target
+            (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
     (setq org-roam-mode-sections
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
@@ -78,3 +93,7 @@
 ;; Projectile
 (setq projectile-project-search-path '("~/git/viewsource" "~/git/dsplatform" "~/git/creetion" "~/.config"))
 (setq ob-mermaid-cli-path "/home/akkerman/org/node_modules/.bin/mmdc")
+
+;; Saved macros
+(fset 'BLI\ header
+   (kmacro [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))
