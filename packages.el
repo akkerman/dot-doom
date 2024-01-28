@@ -53,3 +53,6 @@
 ;; org-roam-ui probeert bij te blijven met nieuwste org-roam, daarom raden ze aan deze te unpinnen
 ;; (unpin! org-roam)
 (package! org-roam-ui)
+
+;; disable esc (back to normal mode) upon typing jk
+(package! evil-escape :disable t)
