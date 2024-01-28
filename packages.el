@@ -49,3 +49,7 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 (package! gruvbox-theme)
+
+;; org-roam-ui probeert bij te blijven met nieuwste org-roam, daarom raden ze aan deze te unpinnen
+;; (unpin! org-roam)
+(package! org-roam-ui)
