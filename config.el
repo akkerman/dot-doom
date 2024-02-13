@@ -48,7 +48,21 @@
     (setq org-roam-mode-sections
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
-              #'org-roam-unlinked-references-section)))
+              #'org-roam-unlinked-references-section))
+    (map! :leader
+          (:prefix ("n r u" . "ORUI")
+           :desc "toggle follow"
+           "f" #'org-roam-ui-follow-mode
+           :desc "node local graph"
+           "l" #'org-roam-ui-node-local
+           :desc "ui open"
+           "o" #'org-roam-ui-open
+           :desc "togle node in graph"
+           "t" #'org-roam-ui-change-local-graph
+           :desc "node zoom"
+           "z" #'org-roam-ui-node-zoom)))
+
+
 
 
 
