@@ -109,6 +109,32 @@
 (setq projectile-project-search-path '("~/git/viewsource" "~/git/dsplatform" "~/git/creetion" "~/.config"))
 (setq ob-mermaid-cli-path "/home/akkerman/org/node_modules/.bin/mmdc")
 
+;; Javascript development
+
+;; automatically fix javascript errors
+(setq eslint-fix-executable "eslint_d")
+(eval-after-load 'js2-mode
+  '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+
+(map! :leader
+      :desc "Toggle impl and test"
+      "p v"
+        #'projectile-toggle-between-implementation-and-test)
+
+(map! :leader
+      :desc "Split, toggle impl and test"
+      "w a"
+      (cmd!
+       (evil-window-vsplit)
+       (projectile-toggle-between-implementation-and-test)))
+
+(map! :leader
+      :desc "Split, toggle impl and test"
+      "w i"
+      (cmd!
+       (evil-window-split)
+       (evil-edit "index.js")))
+
 ;; Saved macros
 (fset 'BLI\ header
    (kmacro [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))
