@@ -51,22 +51,21 @@
               #'org-roam-unlinked-references-section))
     (map! :leader
           (:prefix ("n r u" . "ORUI")
-           :desc "add to local"
-           "a" #'org-roam-ui-add-to-local-graph
-           :desc "toggle follow"
-           "f" #'org-roam-ui-follow-mode
-           :desc "node local graph"
-           "l" #'org-roam-ui-node-local
            :desc "ui open"
            "o" #'org-roam-ui-open
-           :desc "togle node in graph"
-           "t" #'org-roam-ui-change-local-graph
+           :desc "toggle follow"
+           "f" #'org-roam-ui-follow-mode
            :desc "node zoom"
-           "z" #'org-roam-ui-node-zoom)))
-
-
-
-
+           "z" #'org-roam-ui-node-zoom
+           :desc "node local graph"
+           "l" #'org-roam-ui-node-local
+           :desc "add to local"
+           "a" #'org-roam-ui-add-to-local-graph
+           :desc "remove from local"
+           "r" #'org-roam-ui-remove-from-local-graph
+           :desc "toggle node in graph"
+           "t" #'org-roam-ui-change-local-graph
+           )))
 
 ;; citations
 (after! citar
