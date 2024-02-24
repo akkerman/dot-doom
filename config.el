@@ -2,6 +2,12 @@
 
 ; (setq doom-theme 'doom-one)
 (setq doom-theme 'gruvbox-dark-medium)
+(custom-theme-set-faces!
+'gruvbox-dark-medium
+'(org-level-3 :inherit outline-3 :height 1.1)
+'(org-level-2 :inherit outline-2 :height 1.2)
+'(org-level-1 :inherit outline-1 :height 1.4)
+'(org-document-title  :height 2.0 :underline nil))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
