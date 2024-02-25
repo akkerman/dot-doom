@@ -56,3 +56,6 @@
 
 ;; disable esc (back to normal mode) upon typing jk
 (package! evil-escape :disable t)
+
+
+(package! org-transclusion)
