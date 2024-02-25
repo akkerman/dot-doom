@@ -30,6 +30,9 @@
         ("d" "default" plain "%?" :target
             (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
             :unnarrowed t)
+        ("p" "person" plain "%?" :target
+            (file+head "persons/${slug}.org" "#+title: ${title}\n")
+            :unnarrowed t)
         ("a" "Advent of Code" plain
             (file "~/.config/doom/templates/aoc.org") :target
             (file+head "aoc/%^{year}/%^{day}.org" "#+title: ${title}\n")
