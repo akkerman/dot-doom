@@ -18,6 +18,7 @@
 (after! org
   (setq org-hide-emphasis-markers t)
   (setq org-agenda-start-with-log-mode t)
+  (setq org-agenda-start-on-weekday 1)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-tags-column 75)
@@ -147,3 +148,4 @@
 ;; Saved macros
 (fset 'BLI\ header
    (kmacro [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))
+
