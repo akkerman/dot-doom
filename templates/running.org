@@ -1,7 +1,7 @@
 * %^{Korte omschrijving locatie / route / training}
 :PROPERTIES:
-:Week: %<%U>
-:Time_of_Day: %^{start of run|%<%H:%M>}
+:Week: %<%Y>W%<%V>
+:Time_of_Day: %^{start of run}
 :Distance: %^{Distance}
 :Time: %^{Time}
 :Pace: %^{Pace}
