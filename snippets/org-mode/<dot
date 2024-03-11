@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Create dot source block
+# uuid:
+# key: <dot
+# condition: t
+# --
+#+begin_src dot :file ${1:`(file-name-nondirectory buffer-file-name)`}_${2:image_name}.${3:png} :results file graphics
+`%`$0
+#+end_src
