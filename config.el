@@ -37,7 +37,7 @@
             (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
             :unnarrowed t)
         ("p" "person" plain "%?" :target
-            (file+head "persons/${slug}.org" "#+title: ${title}\n")
+            (file+head "persons/${slug}.org" "#+title:  ${title}\n#+filetags: :person:")
             :unnarrowed t)
         ("a" "Advent of Code" plain
             (file "~/.config/doom/templates/aoc.org") :target
@@ -78,7 +78,7 @@
 
 ;; citations
 (after! citar
-        (setq citar-bibliography '("/home/akkerman/org/bib/library.bib"))
+        (setq citar-bibliography '("/home/akkerman/org/bib/library.bib" "/home/akkerman/org/bib/programming.bib" ))
         (setq citar-library-paths '("/home/akkerman/Dropbox/Library" "/home/akkerman/Dropbox/Library Bought")
                 citar-notes-paths '("/home/akkerman/org/slip-box/refs")
                 citar-org-roam-subdir "refs"))
