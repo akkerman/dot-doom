@@ -38,6 +38,10 @@
   (setq org-log-into-drawer t)
   (setq org-tags-column 75)
   (add-to-list 'org-capture-templates
+                '("t" "Personal todo" entry
+                (file+headline +org-capture-todo-file "Inbox")
+                "* TODO %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d> %<%a> %<%H:%M>]\n:END:\n%i\n%a" :prepend t))
+  (add-to-list 'org-capture-templates
                '("s" "Survival run Journal" entry
                  (file+datetree "slip-box/survival.org")
                  (file "~/.config/doom/templates/survival.org")))
@@ -45,6 +49,8 @@
                '("r" "Run Journal" entry
                  (file+datetree "slip-box/running.org")
                 (file "~/.config/doom/templates/running.org"))))
+
+
 
 (setq org-roam-directory "~/org/slip-box")
 (after! org-roam
