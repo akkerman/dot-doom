@@ -4,4 +4,4 @@ Configuration files for [[https://github.com/doomemacs/doomemacs][doom-emacs]].
 
 * Install
 
-Clone into ~~/.config/doom~
+Clone into =~/.config/doom=
