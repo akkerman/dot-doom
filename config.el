@@ -100,7 +100,7 @@
 
 ;; citations
 (after! citar
-        (setq citar-bibliography '("/home/akkerman/org/bib/library.bib" "/home/akkerman/org/bib/programming.bib" ))
+        (setq citar-bibliography '("/home/akkerman/org/bib/library.bib" "/home/akkerman/org/bib/programming.bib" "/home/akkerman/org/bib/health.bib" ))
         (setq citar-library-paths '("/home/akkerman/Dropbox/Library" "/home/akkerman/Dropbox/Library Bought")
                 citar-notes-paths '("/home/akkerman/org/slip-box/refs")
                 citar-org-roam-subdir "refs"))
