@@ -56,7 +56,7 @@
 (after! org-roam
     (setq org-roam-capture-templates '(
         ("d" "default" plain "%?" :target
-            (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+            (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\ndescription\nwhy this note")
             :unnarrowed t)
         ("p" "person" plain "%?" :target
             (file+head "persons/${slug}.org" "#+title:  ${title}\n#+filetags: :person:")
