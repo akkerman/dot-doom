@@ -183,3 +183,9 @@
     (let ((first-char (substring string nil 1))
           (rest-str   (substring string 1)))
       (concat (capitalize first-char) rest-str))))
+
+
+;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
+(setq org-file-apps
+      (quote
+       (("\\.x?html?\\'" . browse-url))))
