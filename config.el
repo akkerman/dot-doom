@@ -72,7 +72,12 @@
         ("mr" "refinement" plain
             (file "~/.config/doom/templates/refinement.org") :target
             (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-            :unnarrowed t)))
+            :unnarrowed t)
+        ("n" "Energie Onderbrekingen")
+        ("nd" "default" plain "%?" :target
+            (file+head "energieonderbrekingen/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+            :unnarrowed t)
+    ))
     (setq org-roam-dailies-capture-templates '(
         ("d" "default" entry "* %<%H:%M> %?" :target
             (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
