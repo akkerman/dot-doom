@@ -59,3 +59,7 @@
 
 
 (package! org-transclusion)
+
+(package! ob-mermaid)
+(package! mermaid-mode)
+
