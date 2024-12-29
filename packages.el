@@ -63,3 +63,5 @@
 (package! ob-mermaid)
 (package! mermaid-mode)
 
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
