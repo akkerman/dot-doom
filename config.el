@@ -198,3 +198,18 @@
               ("TAB" . 'copilot-accept-completion)
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+
+;; python
+(use-package pipenv
+  :hook (python-mode . pipenv-mode)  ; Automatically enable pipenv in Python files
+  :init
+  (setq pipenv-projectile-after-switch-function
+        #'pipenv-projectile-after-switch-extended)) ; Hook to activate pipenv automatically
+
+(setq python-shell-interpreter "pipenv"
+      python-shell-interpreter-args "run python")
+
+(after! lsp-pyright
+  (setq lsp-pyright-venv-path (expand-file-name "~/.local/share/virtualenvs/")
+        lsp-pyright-venv-directory "pipenv")) ; Adjust if your pipenv environments are elsewhere
