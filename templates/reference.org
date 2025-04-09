@@ -8,6 +8,9 @@
 How do I know of this book?
 Why this book?
 What do i hope to gain?
-* Notes
+* [/] Notes
+:PROPERTIES:
+:COOKIE_DATA: todo recursive
+:END:
 
 %?
