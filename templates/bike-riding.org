@@ -1,15 +1,15 @@
-* %^{Titel voor de run}
+* %^{Titel voor de rit}
 :PROPERTIES:
-:Sport: Run
+:Sport: Bike
 :Week: %<%Y>W%<%V>
 :Time_of_Day: %^{Time of Day|early|mid-morning|lunch|afternoon|late-afternoon|evening}
 :Distance: %^{Distance}
 :Time: %^{Time}
-:Pace: %^{Pace (min/km)}
 :Avg_HR: %^{Avg HR}
+:Speed: %^{Speed (km/h)}
+:Cadence: %^{Avg Cadence}
 :Intensity: %^{Intensity|Low|High}
 :Type: %^{Type|foundation|recovery|long|fast-finish|tempo|threshold|intervals|vo2max|test|race}
 :END:
 
 %? Dieet? Blessures? Voortgang?
-

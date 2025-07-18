@@ -5,9 +5,10 @@
 (custom-theme-set-faces!
 'gruvbox-dark-medium
 ;; '(org-level-3 :inherit outline-3 :height 1.1)
-'(org-level-2 :inherit outline-2 :height 1.2)
-'(org-level-1 :inherit outline-1 :height 1.4)
-'(org-document-title  :height 2.0 :underline nil))
+;; '(org-level-2 :inherit outline-2 :height 1.2)
+;; '(org-level-1 :inherit outline-1 :height 1.4)
+;; '(org-document-title  :height 2.0 :underline nil)
+)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -47,8 +48,13 @@
                  (file "~/.config/doom/templates/survival.org")))
   (add-to-list 'org-capture-templates
                '("r" "Run Journal" entry
-                 (file+datetree "slip-box/running.org")
-                (file "~/.config/doom/templates/running.org"))))
+                 (file+datetree "slip-box/training.org")
+                (file "~/.config/doom/templates/running.org")))
+  (add-to-list 'org-capture-templates
+               '("b" "Bike Journal" entry
+                 (file+datetree "slip-box/training.org")
+                (file "~/.config/doom/templates/bike-riding.org")))
+  )
 
 
 
