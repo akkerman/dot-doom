@@ -219,3 +219,9 @@
 (after! lsp-pyright
   (setq lsp-pyright-venv-path (expand-file-name "~/.local/share/virtualenvs/")
         lsp-pyright-venv-directory "pipenv")) ; Adjust if your pipenv environments are elsewhere
+
+(use-package! gptel
+  :config
+  (setq gptel-api-key (getenv "OPENAI_API_KEY"))
+  (setq gptel-model "gpt-3.5-turbo")
+  (setq gptel-default-prompt "org-mode"))
