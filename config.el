@@ -225,3 +225,14 @@
   (setq gptel-api-key (getenv "OPENAI_API_KEY"))
   (setq gptel-model "gpt-3.5-turbo")
   (setq gptel-default-prompt "org-mode"))
+
+
+;; Laat Emacs automatisch .js aanvullen bij require/import zonder extensie
+(defun my/ffap-js-extension ()
+  "Probeer een .js bestand als het bestand onder de cursor niet bestaat."
+  (let* ((fname (thing-at-point 'filename t))
+         (with-js (and fname (concat fname ".js"))))
+    (when (and with-js (file-exists-p with-js))
+      with-js)))
+
+(add-hook 'find-file-at-point-functions #'my/ffap-js-extension)
