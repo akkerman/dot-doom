@@ -204,3 +204,12 @@
        "~/git/viewsource/jira.org/"
        "Jira URLs converted to org-mode"
        "Failed to convert Jira URLs - original text preserved"))
+
+;; Run template post processing
+(map! :leader
+      :desc "Enrich Run/Bike template with Strava data" "n T"
+      (viewsource/make-region-processor
+       '("python" "-m" "org.generate")
+       "~/git/viewsource/matchrun/"
+       "Template enriched with Strava data"
+       "Failed to enrich template with Strava data - original text preserved"))
