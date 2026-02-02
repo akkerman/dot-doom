@@ -1,4 +1,6 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-;;
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
+(load! "+functions")
 
 ; (setq doom-theme 'doom-ne)
 (setq doom-theme 'gruvbox-dark-medium)
@@ -119,34 +121,6 @@
                 citar-notes-paths '("/home/akkerman/org/slip-box/refs")
                 citar-org-roam-subdir "refs"))
 
-(defun viewsource/org-roam-node-from-cite (keys-entries)
-    (interactive (list (citar-select-ref :multiple nil :rebuild-cache t)))
-    (let ((title (citar--format-entry-no-widths (cdr keys-entries)
-                                                "${author editor}. (${date year}). ${title}")))
-      (org-roam-capture- :templates
-                         '(("r" "reference" plain (file "~/.config/doom/templates/reference.org") :if-new
-                            (file+head "refs/${citekey}.org"
-                                       ":PROPERTIES:\n:ROAM_REFS: @${citekey}\n:END:\n#+title: ${title}\n")
-                         :immediate-finish t
-                         :unnarrowed t))
-                         :info (list :citekey (car keys-entries))
-                         :node (org-roam-node-create :title title)
-                         :props '(:finalize find-file))))
-
-;; Take screenshot
-(defun viewsource/org-scrot ()
-  "Take a screenshot into a time stamped unique-named file in the
-   same directory as the org-buffer and insert a link to this file."
-  (interactive)
-  (setq suffix (concat
-                  "_scrot-"
-                  (format-time-string "%Y%m%d%H%M%S") ".png"))
-  (setq absFilename (concat (buffer-file-name) suffix))
-  (setq relFilename (file-name-nondirectory absFilename))
-  (call-process "flameshot" nil nil nil "gui" "-p" absFilename)
-  (insert (concat "#+CAPTION: image-caption\n" "#+NAME:    fig:image-name\n" "[[./" relFilename "]]"))
-  (org-display-inline-images))
-
 ;; Mode line
 (setq doom-modeline-vcs-max-length 100)
 
@@ -184,16 +158,6 @@
 (fset 'BLI\ header
    (kmacro [?0 ?y ?t ?  ?m ?m ?? ?\C-r ?\" return ?d ?d ?\' ?m ?p ?k ?  ?m ?h ?k] 0 "%d"))
 
-;; related to yasnippets
-;; https://emacs.stackexchange.com/questions/12613/convert-the-first-character-to-uppercase-capital-letter-using-yasnippet
-(defun my/capitalize-first-char (&optional string)
-  "Capitalize only the first character of the input STRING."
-  (when (and string (> (length string) 0))
-    (let ((first-char (substring string nil 1))
-          (rest-str   (substring string 1)))
-      (concat (capitalize first-char) rest-str))))
-
-
 ;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
 (setq org-file-apps
       (quote
@@ -230,24 +194,4 @@
   (setq gptel-default-prompt "org-mode"))
 
 
-(defun my/ffap-js-extension ()
-  "Probeer een .js bestand als het bestand onder de cursor niet bestaat."
-  (let* ((fname (thing-at-point 'filename t))
-         (with-js (and fname (concat fname ".js"))))
-    (when (and with-js (file-exists-p with-js))
-      with-js)))
-
-(add-hook 'find-file-at-point-functions #'my/ffap-js-extension)
-
-(defun viewsource/org-export-to-gfm ()
-  "Export current Org buffer to GitHub-flavored Markdown using pandoc."
-  (interactive)
-  (let* ((input (buffer-file-name))
-         (output (concat (file-name-sans-extension input) ".md")))
-    (call-process "pandoc" nil nil nil
-                  "-f" "org"
-                  "-t" "gfm"
-                  "--wrap=none"
-                  "-o" output
-                  input)
-    (message "Exported to %s" output)))
+(add-hook 'find-file-at-point-functions #'viewsource/ffap-js-extension)

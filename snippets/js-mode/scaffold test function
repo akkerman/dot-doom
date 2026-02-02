@@ -2,12 +2,12 @@
 # name: scaffold test function
 # key: makerequire
 # --
-const make${2:$(my/capitalize-first-char yas-text)} = require('./${1:module}')
+const make${2:$(viewsource/capitalize-first-char yas-text)} = require('./${1:module}')
 
 describe('test $1', () => {
   let deps
 
-  /** @type {ReturnType<make${2:$(my/capitalize-first-char yas-text)}>} */
+  /** @type {ReturnType<make${2:$(viewsource/capitalize-first-char yas-text)}>} */
   let ${2:functionUnderTest}
 
   beforeAll(() => {
@@ -15,7 +15,7 @@ describe('test $1', () => {
       ${3:dependantFunction}: jest.fn().mockResolvedValue(null),
       $0
     }
-    $2 = make${2:$(my/capitalize-first-char yas-text)}(deps)
+    $2 = make${2:$(viewsource/capitalize-first-char yas-text)}(deps)
   })
 
   beforeEach(() => {
