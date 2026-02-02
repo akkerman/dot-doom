@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-;;
 
-; (setq doom-theme 'doom-one)
+; (setq doom-theme 'doom-ne)
 (setq doom-theme 'gruvbox-dark-medium)
 (custom-theme-set-faces!
 'gruvbox-dark-medium
@@ -68,9 +68,12 @@
             (file+head "persons/${slug}.org" "#+title:  ${title}\n#+filetags: :person:")
             :unnarrowed t)
         ("a" "Advent of Code" plain
-            (file "~/.config/doom/templates/aoc.org") :target
-            (file+head "aoc/%^{year}/%^{day}.org" "#+title: ${title}\n")
-            :unnarrowed t)
+         (file "~/.config/doom/templates/aoc.org")
+         :target
+         (file+head "aoc/%^{year}/%^{day}.org"
+                    "#+title: ${title}\n")
+         :variables (("year" . "%^{year}"))
+         :unnarrowed t)
         ("m" "mijn-aansluiting")
         ("md" "default" plain "%?" :target
             (file+head "mijn-aansluiting/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
@@ -227,7 +230,6 @@
   (setq gptel-default-prompt "org-mode"))
 
 
-;; Laat Emacs automatisch .js aanvullen bij require/import zonder extensie
 (defun my/ffap-js-extension ()
   "Probeer een .js bestand als het bestand onder de cursor niet bestaat."
   (let* ((fname (thing-at-point 'filename t))
@@ -236,3 +238,16 @@
       with-js)))
 
 (add-hook 'find-file-at-point-functions #'my/ffap-js-extension)
+
+(defun viewsource/org-export-to-gfm ()
+  "Export current Org buffer to GitHub-flavored Markdown using pandoc."
+  (interactive)
+  (let* ((input (buffer-file-name))
+         (output (concat (file-name-sans-extension input) ".md")))
+    (call-process "pandoc" nil nil nil
+                  "-f" "org"
+                  "-t" "gfm"
+                  "--wrap=none"
+                  "-o" output
+                  input)
+    (message "Exported to %s" output)))
