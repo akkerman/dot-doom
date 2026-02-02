@@ -198,4 +198,9 @@
 
 ;; Jira integration
 (map! :leader
-      :desc "Jira URLs to org" "n j" #'viewsource/jira-to-org)
+      :desc "Jira URLs to org" "n j"
+      (viewsource/make-region-processor
+       '("python" "extract.py")
+       "~/git/viewsource/jira.org/"
+       "Jira URLs converted to org-mode"
+       "Failed to convert Jira URLs - original text preserved"))

@@ -80,28 +80,32 @@ Returns the path with .js extension if it exists, nil otherwise."
     (when (and with-js (file-exists-p with-js))
       with-js)))
 
-;;;; Jira Integration
+;;;; Region Processing
 
-(defun viewsource/jira-to-org (start end)
-  "Convert Jira URLs in region to org-mode format.
-Passes the selected text through extract.py which fetches Jira
-issue details and returns org-formatted text."
-  (interactive "r")
-  (let* ((input (buffer-substring-no-properties start end))
-         (default-directory (expand-file-name "~/git/viewsource/jira.org/"))
-         (output (with-temp-buffer
-                   (insert input)
-                   (if (zerop (call-process-region (point-min) (point-max)
-                                                   "python" t t nil "extract.py"))
-                       (buffer-string)
-                     nil))))
-    (if output
-        (progn
-          (delete-region start end)
-          (goto-char start)
-          (insert output)
-          (message "Jira URLs converted to org-mode"))
-      (message "Failed to convert Jira URLs - original text preserved"))))
+(defun viewsource/make-region-processor (command &optional working-dir success-msg error-msg)
+  "Create a command that processes region through COMMAND.
+WORKING-DIR sets `default-directory' for the command.
+SUCCESS-MSG and ERROR-MSG are shown after processing."
+  (lambda (beg end)
+    (interactive "r")
+    (let* ((input (buffer-substring-no-properties beg end))
+           (default-directory (if working-dir
+                                  (expand-file-name working-dir)
+                                default-directory))
+           (output (with-temp-buffer
+                     (insert input)
+                     (if (zerop (apply #'call-process-region
+                                       (point-min) (point-max)
+                                       (car command) t t nil (cdr command)))
+                         (buffer-string)
+                       nil))))
+      (if output
+          (progn
+            (delete-region beg end)
+            (goto-char beg)
+            (insert output)
+            (message "%s" (or success-msg "Region processed successfully")))
+        (message "%s" (or error-msg "Processing failed - original text preserved"))))))
 
 (provide '+functions)
 ;;; +functions.el ends here
