@@ -14,16 +14,16 @@
 :RPE: %^{RPE|2|1|3|4|5|6|7|8|9|10}
 :END:
 
-Intake voor de rit:
+*Intake voor de rit*:
 %?
 
-Intake tijdens de rit:
+*Intake tijdens de rit*:
 
-Notes:
+*Notes*:
 
-Lichaamsbeleving & Blessures:
+*Lichaamsbeleving & Blessures*:
 
-Reflectie:
+*Reflectie*:
 - Doel vs uitvoering:
 - Belasting vs herstel:
 - Leren:
