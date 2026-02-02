@@ -195,3 +195,7 @@
 
 
 (add-hook 'find-file-at-point-functions #'viewsource/ffap-js-extension)
+
+;; Jira integration
+(map! :leader
+      :desc "Jira URLs to org" "n j" #'viewsource/jira-to-org)
