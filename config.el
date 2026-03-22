@@ -51,11 +51,15 @@
   (add-to-list 'org-capture-templates
                '("r" "Run Journal" entry
                  (file+datetree "slip-box/training.org")
-                (file "~/.config/doom/templates/running.org")))
+                (file "~/.config/doom/templates/running.org") :jump-to-captured t))
   (add-to-list 'org-capture-templates
                '("b" "Bike Journal" entry
                  (file+datetree "slip-box/training.org")
-                (file "~/.config/doom/templates/bike-riding.org")))
+                (file "~/.config/doom/templates/bike-riding.org") :jump-to-captured t))
+  (add-to-list 'org-capture-templates
+               '("c" "Check-In Journal" entry
+                 (file+datetree "slip-box/training.org")
+                (file "~/.config/doom/templates/check-in.org") :jump-to-captured t))
   )
 
 
@@ -210,6 +214,6 @@
       :desc "Enrich Run/Bike template with Strava data" "n T"
       (viewsource/make-region-processor
        '("python" "-m" "org.generate")
-       "~/git/viewsource/matchrun/"
+       "~/git/viewsource/hardloop/"
        "Template enriched with Strava data"
        "Failed to enrich template with Strava data - original text preserved"))

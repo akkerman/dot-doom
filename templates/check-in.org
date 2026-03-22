@@ -1,0 +1,13 @@
+* %^{Titel voor check in}                                                  :checkin:
+:PROPERTIES:
+:Sport: %^{Sport|Pre-Run|Pre-Ride|None}
+:Week: %<%Y>W%<%V>
+:END:
+
+- Tijd: %<%H:%M>
+- Slaap Kwaliteit: %^{Slaap_Kwaliteit|1|2|3|4|5|6|7|8|9|10}
+- Energie Nivo:  %^{Energie_Nivo|1|2|3|4|5|6|7|8|9|10}
+- Stemming: %?
+- Fysieke pijntjes:
+- Doel voor vandaag:
+- Overige gedachten:
