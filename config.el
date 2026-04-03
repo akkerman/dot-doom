@@ -195,7 +195,46 @@
   :config
   (setq gptel-api-key (getenv "OPENAI_API_KEY"))
   (setq gptel-model "gpt-3.5-turbo")
-  (setq gptel-default-prompt "org-mode"))
+  (setq gptel-default-mode 'org-mode)
+
+  ;; AI-assisted thinking directives
+  (setq gptel-directives
+        '((default . "You are a large language model and a careful programmer. Respond concisely.")
+
+          (socratic . "You are a Socratic thinking partner. Given the text, ask exactly 3 penetrating questions that challenge the reasoning, expose hidden assumptions, or reveal blind spots. Do not answer the questions yourself. Do not restate the text. Just ask the questions, numbered 1-3. Respond in the same language as the input.")
+
+          (devils-advocate . "You are a devil's advocate. Given the text, construct the strongest possible counterargument to the position presented. Be intellectually honest — argue against the position, not the person. Structure your response as: 1) The core claim you're challenging, 2) Your counterargument, 3) What evidence or perspective would be needed to resolve the tension. Respond in the same language as the input.")
+
+          (connections . "You are a cross-disciplinary thinking partner. Given the text, identify 3-5 concepts, fields, or frameworks from OTHER domains that connect to the ideas presented but are NOT mentioned. For each, briefly explain the connection and why it might be a productive avenue to explore. Respond in the same language as the input.")
+
+          (zettelkasten . "You are a Zettelkasten methodology expert. Evaluate this note against these principles:
+1. **Atomicity**: Does this note contain exactly one core idea? If not, suggest how to split it.
+2. **Title**: Does the title accurately capture the single core idea?
+3. **Own words**: Is the content written in the author's own voice, or is it too close to quoting/paraphrasing?
+4. **Self-contained**: Can this note be understood without reading other notes?
+Be brief and actionable. Respond in the same language as the input.")
+
+          (reformulate . "You are a writing clarity assistant. Given the text, help sharpen the formulation without changing the meaning or voice. Provide:
+1. A tighter version of the same idea (fewer words, same meaning)
+2. Flag any vague terms that could be more precise, with specific alternatives
+Do NOT rewrite from scratch. Preserve the author's style and perspective. Respond in the same language as the input.")))
+
+  ;; Keybindings under SPC A (AI) prefix
+  (map! :leader
+        (:prefix ("A" . "AI")
+         :desc "GPTel send"          "a" #'gptel-send
+         :desc "GPTel menu"          "m" #'gptel-menu
+         :desc "Socratic questions"  "s" (cmd! (let ((gptel--system-message (alist-get 'socratic gptel-directives)))
+                                                 (gptel-send (use-region-p))))
+         :desc "Devil's advocate"    "d" (cmd! (let ((gptel--system-message (alist-get 'devils-advocate gptel-directives)))
+                                                 (gptel-send (use-region-p))))
+         :desc "Connections"         "c" (cmd! (let ((gptel--system-message (alist-get 'connections gptel-directives)))
+                                                 (gptel-send (use-region-p))))
+         :desc "Zettelkasten review" "z" (cmd! (let ((gptel--system-message (alist-get 'zettelkasten gptel-directives)))
+                                                 (gptel-send (use-region-p))))
+         :desc "Reformulate"         "r" (cmd! (let ((gptel--system-message (alist-get 'reformulate gptel-directives)))
+                                                 (gptel-send (use-region-p))))
+         :desc "Discover links"      "l" #'viewsource/org-roam-discover-links)))
 
 
 (add-hook 'find-file-at-point-functions #'viewsource/ffap-js-extension)

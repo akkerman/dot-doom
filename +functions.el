@@ -107,5 +107,34 @@ SUCCESS-MSG and ERROR-MSG are shown after processing."
             (message "%s" (or success-msg "Region processed successfully")))
         (message "%s" (or error-msg "Processing failed - original text preserved"))))))
 
+;;;; Link Discovery
+
+(defun viewsource/org-roam-discover-links ()
+  "Find related but unlinked org-roam notes for the current buffer.
+Uses TF-IDF similarity over all notes in the slip-box."
+  (interactive)
+  (let* ((file (buffer-file-name))
+         (buf (get-buffer-create "*link-discovery*"))
+         (script (expand-file-name "~/git/viewsource/link-discovery/discover.py")))
+    (unless file
+      (user-error "Buffer is not visiting a file"))
+    (with-current-buffer buf
+      (let ((inhibit-read-only t))
+        (erase-buffer)
+        (org-mode)
+        (insert "Searching for related notes...\n")
+        (display-buffer buf '(display-buffer-in-side-window . ((side . right) (window-width . 0.4))))))
+    (let ((proc (start-process "link-discovery" buf "python3" script file "--top" "10")))
+      (set-process-sentinel
+       proc
+       (lambda (process _event)
+         (when (eq (process-status process) 'exit)
+           (with-current-buffer (process-buffer process)
+             (let ((inhibit-read-only t))
+               (goto-char (point-min))
+               (when (search-forward "Searching for related notes...\n" nil t)
+                 (delete-region (match-beginning 0) (match-end 0)))
+               (goto-char (point-min))))))))))
+
 (provide '+functions)
 ;;; +functions.el ends here
