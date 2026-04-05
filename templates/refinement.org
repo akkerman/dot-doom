@@ -12,20 +12,15 @@
 #+END:
 
 
-* [0/1] [[id:d66988c8-f7c9-47f6-a5ce-cbad7edf4913][CAPO]]
+* [0/1] Refinement
 :PROPERTIES:
 :COOKIE_DATA: todo recursive
 :END:
 
 %?
-** TODO Pokeren
 
-* [0/1] [[id:c2c1912b-29db-4f7a-aeec-623c9fa81a97][DSP]]
-:PROPERTIES:
-:COOKIE_DATA: todo recursive
-:END:
 
-** TODO Pokeren
+* TODO Pokeren
 
 * Overige
 ** Later begonnen
