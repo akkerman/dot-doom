@@ -64,7 +64,7 @@
 
 
 
-(setq org-roam-directory "~/org/slip-box")
+(setq org-roam-directory (expand-file-name "~/org/slip-box"))
 (after! org-roam
     (setq org-roam-capture-templates '(
         ("d" "default" plain "%?" :target
@@ -99,7 +99,7 @@
     (setq org-roam-mode-sections
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
-              #'org-roam-unlinked-references-section))
+              #'viewsource/org-roam-unlinked-references-section))
     (map! :leader
           (:prefix ("n r u" . "ORUI")
            :desc "ui open"
