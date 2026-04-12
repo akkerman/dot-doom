@@ -101,6 +101,8 @@
               #'org-roam-reflinks-section
               #'viewsource/org-roam-unlinked-references-section))
     (map! :leader
+          :desc "Org-roam node from URL" "n r w" #'viewsource/org-roam-node-from-url)
+    (map! :leader
           (:prefix ("n r u" . "ORUI")
            :desc "ui open"
            "o" #'org-roam-ui-open
@@ -131,6 +133,10 @@
 ;; Projectile
 (setq projectile-project-search-path '("~/git/viewsource" "~/git/dsplatform" "~/git/creetion" "~/.config"))
 (setq ob-mermaid-cli-path "/home/akkerman/org/node_modules/.bin/mmdc")
+
+;; Dired preview
+(use-package! dired-preview
+  :hook (dired-mode . dired-preview-mode))
 
 ;; Javascript development
 

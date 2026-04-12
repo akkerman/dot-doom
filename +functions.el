@@ -9,6 +9,8 @@
 ;; Silence byte-compiler warnings for external functions
 (declare-function citar-select-ref "citar")
 (declare-function citar--format-entry-no-widths "citar")
+(declare-function url-retrieve-synchronously "url")
+(declare-function libxml-parse-html-region "xml")
 (declare-function org-roam-capture- "org-roam-capture")
 (declare-function org-roam-node-create "org-roam-node")
 (declare-function org-roam-node-title "org-roam-node")
@@ -39,6 +41,98 @@ KEYS-ENTRIES is a cons cell of (citekey . entry) from citar."
                        :info (list :citekey (car keys-entries))
                        :node (org-roam-node-create :title title)
                        :props '(:finalize find-file))))
+
+;;;; Org-roam & Web URLs
+
+(defun viewsource/--html-node-text (node)
+  "Recursively extract all text content from a parsed HTML NODE."
+  (cond
+   ((stringp node) node)
+   ((listp node) (mapconcat #'viewsource/--html-node-text (cddr node) " "))
+   (t "")))
+
+(defun viewsource/--html-find-tag (tag tree)
+  "Find the first occurrence of TAG in the HTML parse TREE (depth-first)."
+  (when (listp tree)
+    (if (eq (car tree) tag)
+        tree
+      (cl-some (lambda (child) (viewsource/--html-find-tag tag child))
+               (cddr tree)))))
+
+(defun viewsource/--html-find-all-tags (tags tree)
+  "Find all occurrences of any tag in TAGS within the HTML parse TREE.
+Returns a list of (tag . text) pairs."
+  (when (listp tree)
+    (let ((results '()))
+      (when (memq (car tree) tags)
+        (push (cons (car tree) (string-trim (viewsource/--html-node-text tree)))
+              results))
+      (dolist (child (cddr tree))
+        (setq results (append results (viewsource/--html-find-all-tags tags child))))
+      results)))
+
+(defun viewsource/--url-fetch-and-parse (url)
+  "Fetch URL and return a cons of (title . headings).
+HEADINGS is a list of (tag . text) pairs for h1/h2."
+  (let* ((buf (url-retrieve-synchronously url t t 10))
+         (tree (when buf
+                 (with-current-buffer buf
+                   (goto-char (point-min))
+                   (when (boundp 'url-http-end-of-headers)
+                     (goto-char url-http-end-of-headers))
+                   (libxml-parse-html-region (point) (point-max))))))
+    (when buf (kill-buffer buf))
+    (when tree
+      (let* ((title-node (viewsource/--html-find-tag 'title tree))
+             (title (if title-node
+                        (string-trim (viewsource/--html-node-text title-node))
+                      url))
+             (headings (viewsource/--html-find-all-tags '(h1 h2) tree)))
+        (cons title headings)))))
+
+(defun viewsource/org-roam-node-from-url (url)
+  "Create an org-roam node from a web URL.
+Fetches the page, extracts title and h1/h2 headings, and creates a ref
+note in refs/ with ROAM_REFS set to URL and filetag :lit:."
+  (interactive
+   (list (let ((clip (ignore-errors (current-kill 0 t))))
+           (read-string "URL: "
+                        (when (and clip (string-match-p "^https?://" clip)) clip)))))
+  (message "Fetching %s..." url)
+  (let* ((parsed (viewsource/--url-fetch-and-parse url))
+         (_ (unless parsed (user-error "Failed to fetch %s" url)))
+         (title (car parsed))
+         (headings (cdr parsed))
+         (skeleton (if headings
+                       (mapconcat (lambda (h)
+                                    (format "%s TODO %s\n\n"
+                                            (if (eq (car h) 'h1) "*" "**")
+                                            (cdr h)))
+                                  headings "")
+                     "* TODO Notes\n\n%?\n"))
+         (slug (org-roam-node-slug (org-roam-node-create :title title)))
+         (file (expand-file-name
+                (format "%s-%s.org" (format-time-string "%Y%m%d%H%M%S") slug)
+                (expand-file-name "refs" org-roam-directory)))
+         (org-id-overriding-file-name file)
+         (id (org-id-new)))
+    (org-roam-capture-
+     :node (org-roam-node-create :title title)
+     :templates `(("w" "web" plain
+                   ,skeleton
+                   :if-new (file+head ,file
+                                      ,(concat ":PROPERTIES:\n"
+                                               ":ID:       " id "\n"
+                                               ":ROAM_REFS: " url "\n"
+                                               ":END:\n"
+                                               "#+title: ${title}\n"
+                                               "#+todo: TODO(t) READING(r) DEVELOP(d) | DONE(D) SKIP(s)\n"
+                                               "#+filetags: :lit:\n\n"
+                                               "- tags :: \n"
+                                               "- author :: \n\n"))
+                   :immediate-finish nil
+                   :unnarrowed t))
+     :props '(:finalize find-file))))
 
 ;;;; Org Export
 
