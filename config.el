@@ -140,6 +140,22 @@
 
 ;; Javascript development
 
+(use-package! coverlay
+  :hook (js2-mode . coverlay-minor-mode)
+  :config
+  (defun viewsource/coverlay-load-file (lcov-file)
+    (interactive (list (read-file-name "Lcov file: " (projectile-project-root))))
+    (setq coverlay:base-path
+          (expand-file-name (file-name-directory (directory-file-name (file-name-directory lcov-file)))))
+    (coverlay-load-file lcov-file))
+  (setq coverlay:mark-tested-lines nil)
+  (setq coverlay:untested-line-background-color "orange red")
+  (map! :leader
+        (:prefix ("c v" . "coverage")
+         :desc "Load lcov file"    "l" #'viewsource/coverlay-load-file
+         :desc "Toggle overlays"   "t" #'coverlay-toggle-overlays
+         :desc "Display stats"     "s" #'coverlay-display-stats)))
+
 ;; automatically fix javascript errors
 (setq eslint-fix-executable "eslint_d")
 (eval-after-load 'js2-mode

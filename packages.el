@@ -69,3 +69,5 @@
 (package! gptel)
 
 (package! dired-preview)
+
+(package! coverlay)
