@@ -34,6 +34,8 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 (after! org
+  (setq ispell-dictionary "nl")
+  (add-hook 'org-mode-hook #'flyspell-mode)
   (setq org-hide-emphasis-markers t)
   (setq org-agenda-start-with-log-mode t)
   (setq org-agenda-start-on-weekday 1)
