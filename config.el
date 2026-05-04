@@ -121,6 +121,8 @@
            :desc "toggle node in graph"
            "t" #'org-roam-ui-change-local-graph
            )))
+(map! :leader
+      :desc "Import Orgzly inbox" "n i" #'viewsource/import-orgzly-inbox)
 
 ;; citations
 (after! citar

@@ -292,5 +292,45 @@ Filters applied on top of the original behavior:
                               "\n"))))))))
         (insert ?\n)))))
 
+;;;; Org inbox import
+
+(defun viewsource/import-orgzly-inbox ()
+  "Import items from Orgzly inbox.org into the 'Inbox on mobile' section of todo.org.
+Requires Dropbox to be running. Clears inbox.org after import."
+  (interactive)
+  (unless (zerop (call-process "pgrep" nil nil nil "-x" "dropbox"))
+    (user-error "Dropbox is not running"))
+  (let* ((inbox-file (expand-file-name "~/Dropbox/Apps/Orgzly/inbox.org"))
+         (todo-file (expand-file-name "~/org/todo.org"))
+         (raw (with-temp-buffer
+                (insert-file-contents inbox-file)
+                (buffer-string)))
+         (content (string-trim raw)))
+    (if (string-empty-p content)
+        (message "Orgzly inbox is leeg")
+    (let* ((demoted (replace-regexp-in-string "^\\*" "**" content))
+           (with-todo (with-temp-buffer
+                        (insert demoted)
+                        (goto-char (point-min))
+                        (while (re-search-forward "^\\*\\* " nil t)
+                          (unless (looking-at (regexp-opt '("TODO" "DONE" "STRT" "WAIT" "HOLD" "KILL") 'words))
+                            (insert "TODO ")))
+                        (buffer-string)))
+           (item-count (cl-count-if (lambda (line) (string-match-p "^\\*\\* " line))
+                                    (split-string with-todo "\n")))
+           (buf (find-file-noselect todo-file)))
+      (with-current-buffer buf
+        (save-excursion
+          (goto-char (point-min))
+          (unless (re-search-forward "^\\* .*Inbox on mobile" nil t)
+            (user-error "Heading 'Inbox on mobile' niet gevonden in todo.org"))
+          (end-of-line)
+          (forward-line 1)
+          (while (looking-at "^$") (forward-line 1))
+          (insert with-todo "\n\n"))
+        (save-buffer))
+      (with-temp-file inbox-file (insert ""))
+      (message "Geïmporteerd: %d item(s) naar todo.org" item-count)))))
+
 (provide '+functions)
 ;;; +functions.el ends here
