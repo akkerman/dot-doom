@@ -223,6 +223,11 @@
   (setq gptel-model "gpt-3.5-turbo")
   (setq gptel-default-mode 'org-mode)
 
+  (gptel-make-ollama "Ollama"
+    :host "localhost:11434"
+    :stream t
+    :models '(qwen3.6:35b-a3b gemma4:26b-a4b-it-q4_K_M))
+
   ;; AI-assisted thinking directives
   (setq gptel-directives
         '((default . "Je bent een behulpzame assistent en zorgvuldige programmeur. Antwoord beknopt. Antwoord in dezelfde taal als de invoer: Nederlands voor Nederlandse tekst, Engels voor Engelse tekst.")
