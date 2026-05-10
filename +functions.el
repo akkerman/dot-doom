@@ -332,5 +332,23 @@ Requires Dropbox to be running. Clears inbox.org after import."
       (with-temp-file inbox-file (insert ""))
       (message "Geïmporteerd: %d item(s) naar todo.org" item-count)))))
 
+;;;; Training Reflection
+
+(defun viewsource/training-reflect ()
+  "Send current training entry (level 3 org subtree) to persistent Claude session."
+  (interactive)
+  (unless (derived-mode-p 'org-mode)
+    (user-error "Not in org-mode"))
+  (org-back-to-heading t)
+  (while (> (org-current-level) 3)
+    (outline-up-heading 1 t))
+  (org-mark-subtree)
+  (call-interactively
+   (viewsource/make-region-processor
+    (list "bash" (expand-file-name "training-reflect" doom-user-dir))
+    nil
+    "Reflectie gegenereerd"
+    "Reflectie mislukt")))
+
 (provide '+functions)
 ;;; +functions.el ends here

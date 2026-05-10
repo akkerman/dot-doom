@@ -270,6 +270,7 @@ Herschrijf NIET vanaf nul. Behoud de stijl en het perspectief van de auteur. Ant
                                                  (gptel-send (use-region-p))))
          :desc "Fact check"          "f" (cmd! (let ((gptel--system-message (alist-get 'factcheck gptel-directives)))
                                                  (gptel-send (use-region-p))))
+         :desc "Training reflectie"  "T" #'viewsource/training-reflect
          :desc "Discover links"      "l" #'viewsource/org-roam-discover-links)))
 
 

@@ -1,0 +1,4 @@
+#!/bin/bash
+INPUT=$(cat)
+RESPONSE=$(claude --resume training-reflect --print -p "$INPUT")
+printf '%s\n\n%s\n' "$INPUT" "$RESPONSE"
