@@ -1,5 +1,14 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;; Mail via msmtp
+(setq send-mail-function 'sendmail-send-it
+      sendmail-program "/usr/bin/msmtp"
+      mail-specify-envelope-from t
+      mail-envelope-from 'header
+      message-sendmail-envelope-from 'header
+      user-mail-address "marcel.akkerman@gmail.com"
+      user-full-name "Marcel Akkerman")
+
 (load! "+functions")
 
 ; (setq doom-theme 'doom-ne)
