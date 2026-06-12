@@ -289,7 +289,7 @@ Herschrijf NIET vanaf nul. Behoud de stijl en het perspectief van de auteur. Ant
 (map! :leader
       :desc "Jira URLs to org" "n j"
       (viewsource/make-region-processor
-       '("python" "extract.py")
+       '("pipenv" "run" "python" "extract.py")
        "~/git/viewsource/jira.org/"
        "Jira URLs converted to org-mode"
        "Failed to convert Jira URLs - original text preserved"))
