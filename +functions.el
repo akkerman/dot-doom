@@ -218,7 +218,7 @@ Uses TF-IDF similarity over all notes in the slip-box."
   (interactive)
   (let* ((file (buffer-file-name))
          (buf (get-buffer-create "*link-discovery*"))
-         (script (expand-file-name "~/git/viewsource/link-discovery/discover.py")))
+         (script (expand-file-name "~/git/viewsource/org-roam-link-discovery/discover.py")))
     (unless file
       (user-error "Buffer is not visiting a file"))
     (with-current-buffer buf
